@@ -7,10 +7,16 @@ import channelsRoutes from "./routes/channels.routes.js";
 
 const app = express();
 
-// Connect to database
 connectDB();
-
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://chat-pro-frontend.vercel.app"
+    ],
+    credentials: true, // If you want cookies/auth headers to work
+  })
+);
 app.use(express.json());
 
 app.get("/health", (req, res) => {
@@ -20,6 +26,8 @@ app.get("/health", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/workspace", workspaceRoutes);
 app.use("/api/channels", channelsRoutes);
+
+// 404 Handler for undefined routes
 app.use((req, res) => {
   res.status(404).json({
     success: false,
