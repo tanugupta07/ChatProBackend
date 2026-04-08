@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "chat pro",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "build": "echo \"No build step defined\""
   },
   "author": "",
   "license": "ISC",
